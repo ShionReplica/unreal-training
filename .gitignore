@@ -1,0 +1,10 @@
+#Unreal Generated Files that can be ignored when commiting to the depo.
+
+Intermediate/
+Build/
+Binaries/
+DerivedDataCache/
+Saved/
+Content/StarterContent/
+
+*.VC.db
