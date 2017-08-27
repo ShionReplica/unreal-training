@@ -31,6 +31,19 @@ void UGrabber::BeginPlay()
 		FString OwnerName = GetOwner()->GetName();
 		UE_LOG(LogTemp, Error, TEXT("%s does not have a Physics Handler.\n"), *OwnerName);
 	}
+
+	// Look for input component
+	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
+	if (InputComponent)
+	{
+		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
+	}
+	else
+	{
+		FString OwnerName = GetOwner()->GetName();
+		UE_LOG(LogTemp, Error, TEXT("%s does not have an input component.\n"), *OwnerName);
+	}
 }
 
 
@@ -86,5 +99,15 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 		UE_LOG(LogTemp, Warning, TEXT("%s\n"), *(ActorHit->GetName()));
 	}
 	
+}
+
+void UGrabber::Grab()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab pressed\n"));
+}
+
+void UGrabber::Release()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Grab released\n"));
 }
 

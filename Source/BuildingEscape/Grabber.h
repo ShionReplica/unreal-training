@@ -27,4 +27,11 @@ private:
 	float Reach = 100.0f;
 	
 	UPhysicsHandleComponent * PhysicsHandle = nullptr;
+
+	UInputComponent * InputComponent = nullptr;
+
+	//Ray cast, grab the object in reach
+	void Grab();
+	//release the object on button release
+	void Release();
 };
